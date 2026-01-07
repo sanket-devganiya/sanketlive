@@ -1,0 +1,1237 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>| MEHUL_FLUTE |</title>
+    
+    <!-- Fonts: Playfair Display (Elegant/Serif) & Lato (Clean/Sans) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* -----------------------------------------------------------
+           1. CORE VARIABLES & RESET
+           ----------------------------------------------------------- */
+        :root {
+            --primary-brown: #5D4037;    /* Bamboo Dark */
+            --secondary-gold: #C5A059;   /* Golden Accent */
+            --soft-beige: #FDFBF7;       /* Background */
+            --nature-green: #2F4F4F;     /* Deep Green */
+            --text-dark: #2C2C2C;
+            --text-light: #FDFBF7;
+            --bg-pattern: #EBE5CE;       /* Light Earthy Tone */
+            
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Lato', sans-serif;
+            
+            --transition-speed: 0.4s;
+            --shadow-soft: 0 10px 30px rgba(93, 64, 55, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--soft-beige);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* -----------------------------------------------------------
+           2. TYPOGRAPHY & UTILITIES
+           ----------------------------------------------------------- */
+        h1, h2, h3, h4 {
+            font-family: var(--font-heading);
+            color: var(--primary-brown);
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: var(--secondary-gold);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 0 1rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        /* -----------------------------------------------------------
+           3. NAVIGATION
+           ----------------------------------------------------------- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(253, 251, 247, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            padding: 15px 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-brown);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo i {
+            color: var(--secondary-gold);
+        }
+.nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 400;
+            font-size: 1rem;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--secondary-gold);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary-gold);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Mobile Menu Toggle */
+        .hamburger {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary-brown);
+        }
+
+        /* -----------------------------------------------------------
+           4. HERO SECTION
+           ----------------------------------------------------------- */
+        .hero {
+            background: linear-gradient(rgba(47, 79, 79, 0.6), rgba(93, 64, 55, 0.4)), 
+                        url('assets/B1.jpg') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--text-light);
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+            width: 100%;
+        }
+
+        /* Spiritual Particle Animation (Floating Light) */
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(187, 141, 54, 0.3);
+            animation: floatUp 10s infinite linear;
+            z-index: 1;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) scale(0); opacity: 0; }
+            50% { opacity: 0.8; }
+            100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+        }
+
+        .hero-content {
+            z-index: 2;
+            padding: 20px;
+            animation: fadeInUp 1.5s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            font-style: italic;
+            font-weight: 300;
+            letter-spacing: 1px;
+            margin-bottom: 2rem;
+            color: var(--secondary-gold);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 35px;
+            background-color: var(--secondary-gold);
+            color: var(--text-dark);
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all var(--transition-speed);
+            border: 2px solid var(--secondary-gold);
+        }
+
+        .btn:hover {
+            background-color: transparent;
+            color: var(--text-light);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* -----------------------------------------------------------
+           5. ABOUT SECTION
+           ----------------------------------------------------------- */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-img-wrapper {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .about-img-wrapper img {
+            width: 100%;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .about-img-wrapper:hover img {
+            transform: scale(1.05);
+        }
+
+        .about-text h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        .about-text p {
+            margin-bottom: 1.5rem;
+            color: #555;
+            text-align: justify;
+        }
+        /* -----------------------------------------------------------
+        6. VIDEO SHOWCASE
+           ----------------------------------------------------------- */
+        #videos {
+            background-color: var(--soft-beige);
+            padding: 80px 0;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .video-card {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow-soft);
+            transition: transform 0.4s ease;
+        }
+
+        .video-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .video-link {
+            text-decoration: none;
+            display: block;
+        }
+
+        .thumbnail-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .thumbnail-wrapper img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .video-card:hover .thumbnail-wrapper img {
+            transform: scale(1.1);
+        }
+
+        .play-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease;
+        }
+
+        .video-card:hover .play-overlay {
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+        .play-btn {
+            font-size: 3rem;
+            color: #fff;
+            transition: transform 0.3s ease;
+        }
+
+        .video-card:hover .play-btn {
+            transform: scale(1.2);
+        }
+
+        .card-content {
+            padding: 20px;
+            background: #fff;
+        }
+
+        .video-title {
+            color: var(--primary-brown);
+            font-size: 1.1rem;
+            margin: 0;
+        }
+     
+
+
+        /* -----------------------------------------------------------
+           7. GALLERY (Grid + Lightbox)
+           ----------------------------------------------------------- */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .gallery-item {
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+            border-radius: 8px;
+            height: 250px;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(93, 64, 55, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-overlay i {
+            color: var(--text-light);
+            font-size: 2rem;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Lightbox Modal */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 2000;
+            display: none; /* Hidden by default */
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .lightbox.active {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .lightbox-img {
+            max-width: 90%;
+            max-height: 80vh;
+            border: 2px solid var(--secondary-gold);
+            border-radius: 4px;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            color: #fff;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+/* -----------------------------------------------------------
+           8. AUDIO SECTION
+           ----------------------------------------------------------- */
+        #audio {
+            background-color: var(--primary-brown);
+            color: var(--text-light);
+            text-align: center;
+        }
+
+        #audio h2 {
+            color: var(--text-light);
+        }
+
+        .audio-player-wrapper {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.1);
+            padding: 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(197, 160, 89, 0.3);
+        }
+
+        .track-list {
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .track {
+            margin-bottom: 15px;
+        }
+
+        .track h4 {
+            color: var(--secondary-gold);
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        audio {
+            width: 100%;
+            height: 40px;
+            border-radius: 20px;
+        }
+
+        /* -----------------------------------------------------------
+           9. TESTIMONIALS
+           ----------------------------------------------------------- */
+        .testimonial-slider {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+        }
+
+        .testimonial-card {
+            background: #fff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: var(--shadow-soft);
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .testimonial-card i {
+            font-size: 2rem;
+            color: var(--secondary-gold);
+            opacity: 0.5;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            color: #444;
+        }
+
+        .client-name {
+            font-weight: 700;
+            color: var(--primary-brown);
+        }
+
+        /* -----------------------------------------------------------
+           10. CONTACT SECTION
+           ----------------------------------------------------------- */
+        #contact {
+            background: var(--bg-pattern);
+        }
+
+        .contact-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            background: #fff;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .contact-info, .contact-form {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .info-item i {
+            width: 50px;
+            height: 50px;
+            background: rgba(197, 160, 89, 0.2);
+            color: var(--primary-brown);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            margin-right: 15px;
+        }
+
+        .social-icons {
+            margin-top: 30px;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            width: 45px;
+            height: 45px;
+            background: var(--primary-brown);
+            color: #fff;
+            border-radius: 50%;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .social-icons a:hover {
+            background: var(--secondary-gold);
+        }
+
+        form .form-group {
+            margin-bottom: 20px;
+        }
+form input, form textarea {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        form input:focus, form textarea:focus {
+            outline: none;
+            border-color: var(--secondary-gold);
+        }
+
+        /* -----------------------------------------------------------
+           11. FOOTER
+           ----------------------------------------------------------- */
+        footer {
+            background: var(--primary-brown);
+            color: #ccc;
+            padding: 30px 0;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        footer p span {
+            color: var(--secondary-gold);
+        }
+
+        /* -----------------------------------------------------------
+           12. ANIMATION CLASSES & KEYFRAMES
+           ----------------------------------------------------------- */
+        
+        /* Base Animation State */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease-out;
+        }
+
+        /* Active State (triggered by JS) */
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* -----------------------------------------------------------
+           13. RESPONSIVE DESIGN
+           ----------------------------------------------------------- */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .hero p { font-size: 1.1rem; }
+            
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                right: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: var(--soft-beige);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                transition: right 0.4s ease;
+                box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-wrapper {
+                padding: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <i class="fa-solid fa-music"></i>MEHUL'S_FLUTE
+            </a>
+            <div class="hamburger" id="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#videos">Shows</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#audio">Music</a></li>
+                <li><a href="#testimonials">Audience Love</a></li>
+                <li><a href="#contact">Contact</a></li>
+                
+            </ul>
+        </div>
+    </nav>
+ 
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <!-- Particles added via JS for cleaner HTML -->
+        <div class="hero-content">
+            <h1>MEHUL'S_FLUTE</h1>
+            <p>Elevating Divine and Live Events with Soulful Flute Melodies</p>
+            <a href="#contact" class="btn">Book Your Event </a>
+        </div>
+    </section>
+<!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>About-US</h2>
+                <p> Your Moment, Our Music — Creaters The Band</p>
+            </div>
+            <div class="about-grid reveal">
+                <div class="about-img-wrapper">
+                    <img src="assets/m1.jpg" alt="Flute Artist">
+                </div>
+                <div class="about-text">
+                    <h2>CREATERS - Instrumental Fusion Band</h2>
+
+                <div style="margin-bottom: 15px;">
+                        <i class="fa-solid fa-leaf" style="color:var(--secondary-gold); margin-right: 10px;"></i> 
+                        <span><b>Creativity | Classical Fusion</b></span>
+            </div>
+
+
+                    <p>
+                Creaters is a versatile instrumental fusion band known for presenting refreshing and soul-stirring 
+                musical experiences. Our performances beautifully blend Indian classical depth with contemporary arrangements,
+                creating music that connects instantly with diverse audiences.
+
+                    </p>
+                    <p>
+                        Creaters is a versatile instrumental fusion band known for presenting refreshing and soul-stirring musical 
+                        experiences. Our performances beautifully blend Indian classical depth with contemporary arrangements, creating 
+                        music that connects instantly with diverse audiences.
+</p>
+                    <!-- <div style="margin-top: 20px;">
+                        <i class="fa-solid fa-leaf" style="color:var(--secondary-gold); margin-right: 10px;"></i>
+                        <span>Flute BY MEHUL_DHANDHUKIYA</span>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+<!-- Performance Concepts Offered (With Links) YouTube link section -->
+    <section id="videos">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>Performance Concepts</h2>
+                <p>Watch Our Latest Performances on YouTube</p>
+            </div>
+            <div class="video-grid">
+                <!-- Video Card 1 -->
+                <article class="video-card reveal">
+                    <a href="https://www.youtube.com/shorts/Wbc_UGQEcrU?feature=share" target="_blank" rel="noopener noreferrer" class="video-link">
+                        <div class="thumbnail-wrapper">
+                            <img src="https://img.youtube.com/vi/aHoCpEW0fMA/mqdefault.jpg" alt="Performance Video">
+                            <div class="play-overlay">
+                                <i class="fas fa-play-circle play-btn"></i>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="video-title">Ambient Flute , Jaltarag ,Sitar Classical Soft Set</h3>
+                        </div>
+                    </a>
+                </article>
+                
+                <!-- Video Card 2 -->
+                <article class="video-card reveal">
+                    <a href="https://www.youtube.com/shorts/AhOKunjpZwo?feature=share" target="_blank" rel="noopener noreferrer" class="video-link">
+                        <div class="thumbnail-wrapper">
+                            <img src="https://img.youtube.com/vi/AhOKunjpZwo/mqdefault.jpg" alt="Performance Video">
+                            <div class="play-overlay">
+                                <i class="fas fa-play-circle play-btn"></i>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="video-title">Folk-Fusion Flute & Violin Instrumental Set</h3>
+                        </div>
+                    </a>
+                </article>
+                <!-- Video Card 3 -->
+                <article class="video-card reveal">
+                    <a href="https://www.youtube.com/shorts/_c2XsfpjsO4?feature=share" target="_blank" rel="noopener noreferrer" class="video-link">
+                        <div class="thumbnail-wrapper">
+                            <img src="https://img.youtube.com/vi/_c2XsfpjsO4/mqdefault.jpg" alt="Performance Video">
+                            <div class="play-overlay">
+                                <i class="fas fa-play-circle play-btn"></i>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="video-title">Theme-Based Grand Piano & Flute Musical Concepts</h3>
+                        </div>
+                    </a>
+                </article>
+
+                 <!-- Video Card 4 -->
+                <article class="video-card reveal">
+                    <a href=" https://www.youtube.com/shorts/6rvgJSKHevU?feature=share" target="_blank" rel="noopener noreferrer" class="video-link">
+                        <div class="thumbnail-wrapper">
+                            <img src="https://img.youtube.com/vi/6rvgJSKHevU/mqdefault.jpg" alt="Performance Video">
+                            <div class="play-overlay">
+                                <i class="fas fa-play-circle play-btn"></i>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="video-title">Special Concept - Meditative & Healing Music
+</h3>
+                        </div>
+                    </a>
+                </article>
+
+                <!-- Video Card 5 -->
+                <article class="video-card reveal">
+                    <a href="  https://www.youtube.com/shorts/IZ_JIVoTnVM?feature=share" target="_blank" rel="noopener noreferrer" class="video-link">
+                        <div class="thumbnail-wrapper">
+                            <img src="https://img.youtube.com/vi/IZ_JIVoTnVM/mqdefault.jpg" alt="Performance Video">
+                            <div class="play-overlay">
+                                <i class="fas fa-play-circle play-btn"></i>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="video-title">Theme-Based Karaoke Flute Concepts
+</h3>
+                        </div>
+                    </a>
+                </article>
+
+
+
+                 <!-- Video Card 6-->
+                <article class="video-card reveal">
+                    <a href="https://www.youtube.com/shorts/oooDPhb09Rc?feature=share" target="_blank" rel="noopener noreferrer" class="video-link">
+                        <div class="thumbnail-wrapper">
+                            <img src="https://img.youtube.com/vi/oooDPhb09Rc/mqdefault.jpg" alt="Performance Video">
+                            <div class="play-overlay">
+                                <i class="fas fa-play-circle play-btn"></i>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="video-title">Soft bansuri + Karaoktrack
+
+</h3>
+                        </div>
+                    </a>
+                </article>
+
+                
+                 <!-- Video Card 7 -->
+                <article class="video-card reveal">
+                    <a href=" https://www.youtube.com/@mehuldhandhukiyaflute" target="_blank" rel="noopener noreferrer" class="video-link">
+                        <div class="thumbnail-wrapper">
+                            <img src=" assets/m1.jpg" alt="Performance Video">  
+                            <div class="play-overlay">
+                                <i class="fas fa-play-circle play-btn"></i>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="video-title"> Other concerts & performances
+
+</h3>
+                        </div>
+                    </a>
+                </article>
+
+
+            </div>
+        </div>
+    </section>
+
+  
+<!-- ends YouTube Link Section -->
+
+
+<!-- Gallery Section -->
+    <section id="gallery">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>Performance Gallery</h2>
+                <p>Where Every Performance Becomes a Memory.</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item reveal" data-src="assets/m2.jpg">
+                    <img src="assets/m2.jpg" alt="Gallery Image 1">
+                    <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="gallery-item reveal" data-src=" assets/m3.jpg">
+                    <img src="assets/m3.jpg" alt="Gallery Image 2">
+                    <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="gallery-item reveal" data-src="assets/m4.jpg">
+                    <img src="assets/m4.jpg" alt="Gallery Image 3">
+                    <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="gallery-item reveal" data-src=" assets/m5.jpg">
+                    <img src="assets/m5.jpg" alt="Gallery Image 4">
+                    <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+
+                <div class="gallery-item reveal" data-src="assets/m6.jpg">
+                    <img src="assets/m6.jpg" alt="Gallery Image 5">
+                    <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+
+                <div class="gallery-item reveal" data-src="assets/m7.jpg">
+                    <img src="assets/m7.jpg" alt="Gallery Image 6">
+                    <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+
+                <div class="gallery-item reveal" data-src="assets/m8.jpg">
+                    <img src="assets/m8.jpg" alt="Gallery Image 7">
+                    <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+
+                <div class="gallery-item reveal" data-src="assets/m9.jpg">
+                    <img src="assets/m9.jpg" alt="Gallery Image 8">
+                    <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Audio Section -->
+    <section id="audio">
+        <div class="container reveal">
+            <div class="section-header">
+                <h2>Listen to the Soul</h2>
+                <!-- <p>FLUTE BY MEHUL_DHANDHUKIYA</p> -->
+            </div>
+            <div class="audio-player-wrapper">
+                <div class="track">
+                    <h4> TUM_MILE_DIL_KHILE</h4>
+                    <audio controls>
+                        <source src="assets/audio/TUM_MILE_DIL_KHILE.mp3" type="audio/mpeg">
+                    </audio>
+                </div>
+                <div class="track">
+                    <h4>EK PYAR KA NAGAMA HEI </h4>
+                    <audio controls>
+                        <source src="assets/audio/EK_PYAR_KA_NAGAMA_HEI.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+                <div class="track">
+                    <h4>PAL_PAL_DIL_KE_PASS</h4>
+                    <audio controls>
+                        <source src="assets/audio/PAL_PAL_DIL_KE_PASS.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>Audience Love</h2>
+            </div>
+            <div class="testimonial-slider reveal">
+                <div class="testimonial-card">
+                    <i class="fas fa-quote-left"></i>
+                    <p class="testimonial-text">" The music touched our hearts. Every note felt soulful and deeply connected."</p>
+                    <p class="client-name">- <p>Mehul Dhandhukiya - Event Management & Planners
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2> Why Choose Creaters 🙂
+</h2>
+            </div>
+            <div class="testimonial-slider reveal">
+                <div class="testimonial-card">
+                    <i class="fas fa-quote-left"></i>
+                    <p class="testimonial-text">Professional trained musicians  
+                        <br>Fresh & unique instrumental concepts 
+                        <br>High stage presence & clean sound
+                        <br>Customizable for Any Event
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+   
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>Book Your Performance</h2>
+                <p>For Concerts, Weddings, Cor-porate and Spiritual Gatherings Events</p>
+</div>
+            <div class="contact-wrapper reveal">
+                <div class="contact-info">
+                    <div class="info-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <div>
+                            <h4>Phone</h4>
+                            <p>+91 95370 38968</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <p>mjdhandhukiya@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Based in</h4>
+                            <p>Rajkot, India (Available to travel)</p>
+                        </div>
+                    </div>
+                    <div class="social-icons">
+                        <a href="https://www.instagram.com/mehul_dhandhukiya01?igsh=aGxvb2NkbmQxaGs2"><i class="fab fa-instagram"></i></a>
+                        <a href="https://youtube.com/@mehuldhandhukiyaflute?si=tteCYzowBAE46zwa"><i class="fab fa-youtube"></i></a>
+                        <a href="https://wa.me/919537038968?text=I%20want%20to%20schedule%20a%20music%20program"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="bookingForm">
+                        <div class="form-group">
+                            <input type="text" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" placeholder="Event Date & Location" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea rows="5" placeholder="Event Details (Type of event, duration, etc.)" required></textarea>
+                        </div>
+                        <button type="submit" class="btn" style="width: 100%; border:none; cursor: pointer;">Send Inquiry</button>
+                        <br>
+                        <br>
+                        <!-- Dial Pad Button -->
+                          <button type="button" class="btn" style="width: 100%; border:none; cursor: pointer;" id="dialpadBtn">Call Now</button></form>
+               
+
+                <script>
+                    document.getElementById('dialpadBtn').addEventListener('click', function() {
+                        window.location.href = 'tel:+919537038968';
+                    });
+                </script>
+                <!-- Dial Pad Button -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 <span><strong>MEHUL_FLUTE</strong></span>. All Rights Reserved.</p>
+<p style="font-size: 0.8rem; margin-top: 5px; color: white;"> <strong>Designed & Developed BY SANKET V DEVGANIYA</strong>.</p>
+    </div>
+    </footer>
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox" id="lightbox">
+    <span class="lightbox-close" id="lightbox-close">&times;</span>
+    <img src="" alt="Full view" class="lightbox-img" id="lightbox-img">
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        
+        // 1. Mobile Menu Toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('nav-links');
+        const links = document.querySelectorAll('.nav-links li');
+
+        hamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        // Animate hamburger icon change if desired
+        });
+
+        // Close menu when a link is clicked
+        links.forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+        });
+        });
+
+        // 2. Scroll Animation (Intersection Observer)
+        const revealElements = document.querySelectorAll('.reveal');
+
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target); // Run once
+                    }
+                });
+            }, {
+                root: null,
+                threshold: 0.15, // Trigger when 15% visible
+                rootMargin: "0px"
+            });
+
+            revealElements.forEach(el => revealObserver.observe(el));
+
+            // 3. Hero Particles Generation
+            const hero = document.querySelector('.hero');
+            const particleCount = 20;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Randomize size and position
+                const size = Math.random() * 20 + 5;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${Math.random() * 100}vw`;
+                particle.style.animationDuration = `${Math.random() * 10 + 10}s`; // 10s to 20s
+                particle.style.animationDelay = `${Math.random() * 5}s`;
+                
+                hero.appendChild(particle);
+            }
+
+            // 4. Gallery Lightbox
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const lightboxClose = document.getElementById('lightbox-close');
+
+            galleryItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    const fullSrc = item.getAttribute('data-src');
+                    lightboxImg.src = fullSrc;
+                    lightbox.classList.add('active');
+                });
+            });
+
+            lightboxClose.addEventListener('click', () => {
+                lightbox.classList.remove('active');
+            });
+
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) {
+                    lightbox.classList.remove('active');
+                }
+            });
+
+            // 5. Form Submission (Mock)
+            const form = document.getElementById('bookingForm');
+            form.addEventListener('submit', (e) => {
+                // Get form values
+                const name = form.querySelector('input[type="text"]').value;
+                const email = form.querySelector('input[type="email"]').value;
+                const eventDetails = form.querySelector('input[placeholder="Event Date & Location"]').value;
+                const message = form.querySelector('textarea').value;
+
+                // Create WhatsApp message
+                const whatsappMessage = `Hello, I would like to book a performance:\n\nName: ${name}\nEmail: ${email}\nEvent Date & Location: ${eventDetails}\nEvent Details: ${message}`;
+
+                // Encode message for URL
+                const encodedMessage = encodeURIComponent(whatsappMessage);
+
+                // WhatsApp number (without + sign)
+                const phoneNumber = '919537038968';
+
+                // Open WhatsApp with pre-filled message
+                window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
+                e.preventDefault();
+                // Create a simple toast notification
+                const btn = form.querySelector('button');
+                const originalText = btn.innerText;
+                
+                btn.innerText = "Sent Successfully!";
+                btn.style.backgroundColor = "var(--nature-green)";
+                btn.style.color = "#fff";
+                
+                setTimeout(() => {
+                    form.reset();
+                    btn.innerText = originalText;
+                    btn.style.backgroundColor = ""; // Reset
+                    btn.style.color = "";
+                }, 3000);
+            });
+        });
+    </script>
+</body>
+</html>
+ 
