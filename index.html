@@ -1204,7 +1204,7 @@ entries.forEach(entry => {
                 const message = form.querySelector('textarea').value;
 
                 // Create WhatsApp message
-                const whatsappMessage = `Hello, I would like to book a performance:\n\nName: ${name}\nEmail: ${email}\nEvent Date & Location: ${eventDetails}\nEvent Details: ${message}`;
+                const whatsappMessage = `Hello, I would like to book your performance:\n\nName: ${name}\nEmail: ${email}\nEvent Date & Location: ${eventDetails}\nEvent Details: ${message}`;
 
                 // Encode message for URL
                 const encodedMessage = encodeURIComponent(whatsappMessage);
@@ -1234,4 +1234,5 @@ entries.forEach(entry => {
     </script>
 </body>
 </html>
+
  
