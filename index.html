@@ -960,37 +960,49 @@ form input, form textarea {
         </div>
     </section>
 
-    <!-- Audio Section -->
-    <section id="audio">
-        <div class="container reveal">
-            <div class="section-header">
-                <h2>Listen to the Soul</h2>
-                <!-- <p>FLUTE BY MEHUL_DHANDHUKIYA</p> -->
+       <!-- Audio Section -->
+        <section id="audio">
+            <div class="container reveal">
+                <div class="section-header">
+                    <h2>Listen to the Soul</h2>
+                    <!-- <p>FLUTE BY MEHUL_DHANDHUKIYA</p> -->
+                </div>
+                <div class="audio-player-wrapper">
+                    <div class="track">
+                        <h4> TUM_MILE_DIL_KHILE</h4>
+                        <audio controls>
+                            <source src="assets/audio/TUM_MILE_DIL_KHILE.mp3" type="audio/mpeg">
+                        </audio>
+                    </div>
+                    <div class="track">
+                        <h4>EK PYAR KA NAGAMA HEI </h4>
+                        <audio controls>
+                            <source src="assets/audio/EK_PYAR_KA_NAGAMA_HEI.mp3" type="audio/mpeg">
+                        </audio>
+                    </div>
+                    <div class="track">
+                        <h4>PAL_PAL_DIL_KE_PASS</h4>
+                        <audio controls>
+                            <source src="assets/audio/PAL_PAL_DIL_KE_PASS.mp3" type="audio/mpeg">
+                        </audio>
+                    </div>
+                </div>
             </div>
-            <div class="audio-player-wrapper">
-                <div class="track">
-                    <h4> TUM_MILE_DIL_KHILE</h4>
-                    <audio controls>
-                        <source src="assets/audio/TUM_MILE_DIL_KHILE.mp3" type="audio/mpeg">
-                    </audio>
-                </div>
-                <div class="track">
-                    <h4>EK PYAR KA NAGAMA HEI </h4>
-                    <audio controls>
-                        <source src="assets/audio/EK_PYAR_KA_NAGAMA_HEI.mp3" type="audio/mpeg">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                <div class="track">
-                    <h4>PAL_PAL_DIL_KE_PASS</h4>
-                    <audio controls>
-                        <source src="assets/audio/PAL_PAL_DIL_KE_PASS.mp3" type="audio/mpeg">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-            </div>
-        </div>
-    </section>
+        </section>
+
+        <script>
+            // Allow multiple audio players to play simultaneously
+            const audioElements = document.querySelectorAll('audio');
+            audioElements.forEach(audio => {
+                audio.addEventListener('play', function() {
+                    audioElements.forEach(otherAudio => {
+                        if (otherAudio !== audio) {
+                            otherAudio.pause();
+                        }
+                    });
+                });
+            });
+        </script>
 
     <!-- Testimonials -->
     <section id="testimonials">
@@ -1236,3 +1248,4 @@ entries.forEach(entry => {
 </html>
 
  
+
