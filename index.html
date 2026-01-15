@@ -1110,6 +1110,149 @@ form input, form textarea {
         </div>
     </section>
 
+
+
+
+ <!-- Rating Section -->
+    <section id="rating" style="background: var(--soft-beige); padding: 80px 0;">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>Rate Your Experience</h2>
+                <p>We'd Love to Hear Your Feedback!</p>
+            </div>
+            <div class="rating-wrapper reveal">
+                <form id="ratingForm">
+                    <div class="form-group">
+                        <input type="text" id="ratingName" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="ratingEmail" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <label style="display: block; margin-bottom: 15px; color: var(--primary-brown); font-weight: 600;">Rate Your Performance Experience:</label>
+                        <div class="star-rating" id="starRating">
+                            <i class="fas fa-star" data-value="1"></i>
+                            <i class="fas fa-star" data-value="2"></i>
+                            <i class="fas fa-star" data-value="3"></i>
+                            <i class="fas fa-star" data-value="4"></i>
+                            <i class="fas fa-star" data-value="5"></i>
+                        </div>
+                        <input type="hidden" id="ratingValue" value="0" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="ratingMessage" rows="4" placeholder="Share your feedback..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn" style="width: 100%; border: none; cursor: pointer;">Submit Rating</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        /* Rating Section Styles */
+        .rating-wrapper {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .star-rating {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .star-rating i {
+            font-size: 2.5rem;
+            color: #ddd;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .star-rating i:hover,
+        .star-rating i.active {
+            color: var(--secondary-gold);
+            transform: scale(1.2);
+        }
+
+        #ratingForm .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        #ratingForm .form-group textarea:focus {
+            outline: none;
+            border-color: var(--secondary-gold);
+        }
+    </style>
+
+    <!-- Rating Section JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const stars = document.querySelectorAll('.star-rating i');
+            const ratingValue = document.getElementById('ratingValue');
+            const ratingForm = document.getElementById('ratingForm');
+
+            stars.forEach(star => {
+                star.addEventListener('click', () => {
+                    const value = star.getAttribute('data-value');
+                    ratingValue.value = value;
+                    
+                    stars.forEach(s => s.classList.remove('active'));
+                    for (let i = 0; i < value; i++) {
+                        stars[i].classList.add('active');
+                    }
+                });
+            });
+
+            ratingForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                const name = document.getElementById('ratingName').value;
+                const email = document.getElementById('ratingEmail').value;
+                const rating = document.getElementById('ratingValue').value;
+                const message = document.getElementById('ratingMessage').value;
+
+                if (rating === '0') {
+                    alert('Please select a rating!');
+                    return;
+                }
+
+                const whatsappMessage = `New Rating Received!\n\nName: ${name}\nEmail: ${email}\nRating: ${'★'.repeat(rating)}\n\nFeedback: ${message}`;
+                const encodedMessage = encodeURIComponent(whatsappMessage);
+                const phoneNumber = '919537038968';
+
+                window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
+
+                const btn = ratingForm.querySelector('button');
+                const originalText = btn.innerText;
+                btn.innerText = "Thank You!";
+                btn.style.backgroundColor = "var(--nature-green)";
+                btn.style.color = "#fff";
+
+                setTimeout(() => {
+                    ratingForm.reset();
+                    ratingValue.value = '0';
+                    stars.forEach(s => s.classList.remove('active'));
+                    btn.innerText = originalText;
+                    btn.style.backgroundColor = "";
+                }, 3000);
+            });
+        });
+    </script>
+
+
+ 
+
     <!-- Footer -->
     <footer>
         <div class="container">
@@ -1248,4 +1391,5 @@ entries.forEach(entry => {
 </html>
 
  
+
 
